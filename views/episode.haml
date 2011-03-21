@@ -1,0 +1,7 @@
+.episode
+  %h3.title= "##{episode.id} #{episode.name}"
+  %p.date= episode.created_at.strftime("%A, %B %d, %Y")
+  %video{:controls => true, :width => 500}
+    - episode.videos.each do |video|
+      %source{:src => video.filename, :type => video.format}
+  %p.body= episode.content

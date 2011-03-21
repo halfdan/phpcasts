@@ -1,0 +1,17 @@
+!!! 5
+%html
+  %head
+    %title PHPcasts - Free PHP screencasts
+    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
+    %link{"rel" => "stylesheet", "href" => "http://kernest.com/fonts/essays-1743-bold-italic.css", "type" => "text/css"}
+    %link{"rel" => "stylesheet", "href" => "/style.css", "type" => "text/css"}
+  %body
+    #container
+      %header
+        %a{:href => '/'}
+          %h1 PHPcasts
+      %section.content
+        = yield
+      %footer
+        %p
+          All content copyright &copy; phpcasts.net

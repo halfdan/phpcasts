@@ -1,0 +1,90 @@
+@font-face
+{
+	font-family:'Linux Libertine';
+	src:local('Linux Libertine'),url('fonts/linlibertine_re-4.7.5-webfont.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal
+}
+
+*, html, body {
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+body
+{
+	text-align: center;
+	background: #9999CC;
+}
+
+#container
+{
+	width: 520px;
+	margin: 0 auto;
+	text-align: left;
+	background: #FFF;
+	padding: 10px 20px;
+	font-family: 'Linux Libertine', arial, serif;
+}
+
+#container h2
+{
+	margin: 15px 0 5px 0;
+}
+
+header
+{
+	display:block;
+	margin-bottom: 20px;
+}
+
+header h1
+{
+	font-family: 'Essays 1743', arial, serif;
+	font-size: 2em;
+	text-shadow: 0 0 2px #666677;
+}
+
+.content
+{
+	margin-top: 10px;
+}
+
+.episode .title
+{
+	text-shadow: 0 0 2px #666677;
+	margin-bottom: 0;
+}
+
+.episode .date
+{
+	font-size: 0.7em;
+	padding-top: 0;
+	margin-top: 0;
+}
+
+.episode video
+{
+	margin-top: 10px;
+}
+
+.episode .hr
+{
+	margin: 10px;
+	text-align: center;
+	line-height: 0.875;
+	text-shadow: 0 0 2px #666677;
+}
+
+footer
+{
+	display: block;
+	margin-top: 10px;
+	font-size: 0.9em;
+	text-align: center;
+}

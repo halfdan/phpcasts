@@ -1,0 +1,17 @@
+!!! XML utf-8
+%rss{:version => "2.0", "xmlns:media" => "http://search.yahoo.com/mrss/", "xmlns:itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd"}
+  %channel
+    %title PHPCasts
+    %link http://phpcasts.net
+    %description Free PHP screencasts
+    - episodes.each do |episode|
+      %item
+        %title= "Episode #{episode.id}: #{h episode.name}"
+        %link= "http://phpcasts.net/episode/#{episode.id}"
+        %description Test
+        %guid= "http://phpcasts.net/episode/#{episode.id}"
+        %pubDate= episode.created_at.strftime("%a, %d %b %Y %H:%M:%S %z")
+        - if episode.videos.count != 0
+          %media:group
+            - episode.videos.each do |video|
+              %media:content{:url => "http://phpcasts.net/videos/#{video.filename}", :type => "video/quicktime" }

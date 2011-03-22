@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'sequel'
 require 'haml'
+require 'action_view'
 
 configure do
 	Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://phpcasts.db')
@@ -15,6 +16,13 @@ configure do
 		:admin_cookie_key => 'phpcasts_admin',
 		:admin_cookie_value => '51d6d976913ace58'
 	)
+end
+
+helpers do
+  include Rack::Utils
+  alias_method :h, :escape_html
+
+  include ActionView::Partials
 end
 
 # Load Models
@@ -35,4 +43,9 @@ end
 
 get '/about' do
 	haml :about
+end
+
+get '/feed' do
+	episodes = Episode.filter(:published => true).order(:created_at.desc).all
+	haml :feed, :locals => { :episodes => episodes }, :layout => false
 end

@@ -14,6 +14,8 @@
         %a{:href => '/'}
           %h1 PHPcasts
       %section.content
+        - if flash[:notice]
+          %p.flash= flash[:notice]
         = yield
       %footer
         %p

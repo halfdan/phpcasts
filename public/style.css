@@ -46,7 +46,7 @@ header
 header h1
 {
 	font-family: 'Essays 1743', arial, serif;
-	font-size: 2em;
+	font-size: 4em;
 	text-shadow: 0 0 2px #666677;
 }
 
@@ -59,6 +59,7 @@ header h1
 {
 	text-shadow: 0 0 2px #666677;
 	margin-bottom: 0;
+	font-size: 1.5em;
 }
 
 .episode .date
@@ -87,4 +88,12 @@ footer
 	margin-top: 10px;
 	font-size: 0.9em;
 	text-align: center;
+}
+
+p.flash {
+	font-size: 11px;
+	padding: 5px 8px;
+	margin-top: 10px;
+	background-color: #CFC;
+	border: solid 1px #6C6;
 }

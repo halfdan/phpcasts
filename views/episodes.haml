@@ -1,11 +1,9 @@
-- episodes.each do |episode|
+- @episodes.each do |episode|
   .episode
     %h3.title
       %a{:href => "/episode/#{episode.id}"}
         = "##{episode.id} #{episode.name}"
     %p.date= episode.created_at.strftime("%A, %B %d, %Y")
-    %video{:controls => true, :width => 500}
-      - episode.videos.each do |video|
-        %source{:src => "/videos/#{video.filename}", :type => video.format}
+    = partial :'episode/video', :locals => {:episode => episode}
     %p.body= episode.content
     %p.hr &#9805;

@@ -4,4 +4,8 @@
   = partial :'episode/video', :locals => { :episode => @episode }
   %p.body= @episode.content
 
-%a{:href => "/login?return_to=#{u current_url}"} You must sign in through GitHub to post a comment.
+.comments
+- if is_logged_in?
+  %p.user_info You are logged in as <a href="/user/#{@current_user.id}">#{@current_user.name}</a>.
+- else
+  %p.user_info You must sing in through GitHub to post a comment. <a href="/login?return_to=#{u current_url}">Sign in!</a>

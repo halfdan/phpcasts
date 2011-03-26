@@ -12,4 +12,8 @@ class User < Sequel::Model
 		user.save
 		return user
 	end
+
+	def is_admin?
+		self.admin
+	end
 end

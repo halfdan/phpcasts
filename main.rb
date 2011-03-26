@@ -43,6 +43,10 @@ helpers do
 		session[:logged_in] == true
 	end
 
+	def is_admin?
+		is_logged_in? && @current_user.is_admin?
+	end
+
 	def username
 		session[:username]
 	end
@@ -60,10 +64,14 @@ require 'models/Comment.rb'
 
 layout 'layout'
 
+before do
+	@current_user = User.filter(:id => session[:user_id]).first if is_logged_in?
+end
+
 get '/' do
-	@episodes = Episode.order(:created_at.desc).all
+	@page = params[:page] ? params[:page].to_i : 1
+	@episodes = Episode.order(:created_at.desc).limit(10, (@page-1)*10)
 	haml :episodes
-#main, :locals => {:episodes => episodes}
 end
 
 get '/episode/:id' do
@@ -76,10 +84,15 @@ get '/login' do
 	redirect '/auth/github'
 end
 
+get '/logout' do
+	session[:logged_in] = false	
+end
+
 get '/auth/:name/callback' do
 	auth = request.env['omniauth.auth']
-	user = User.filter(:github_uid => auth["uid"]).first || User.create_from_omniauth(auth)
-	session[:username] = user.name
+	# do whatever you want with the information!
+	@current_user = User.filter(:github_uid => auth["uid"]).first || User.create_from_omniauth(auth)
+	session[:user_id] = @current_user.id
 	session[:logged_in] = true
 	flash[:notice] = "You successfully logged in!"
 	redirect (!session[:return_to].nil? && session[:return_to]) || PHPCast.url_base
@@ -93,4 +106,12 @@ end
 get '/feed.rss' do
 	episodes = Episode.filter(:published => true).order(:created_at.desc).all
 	haml :feed, :locals => {:episodes => episodes}, :layout => false
+end
+
+not_found do
+	haml :notfound
+end
+
+error do
+	haml :error
 end
